@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CarePulse Medical Center - Professional Healthcare & Appointment Booking</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              200: '#bae0fd',
+              500: '#0284c7',
+              600: '#026aa7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom CSS animations and refined styling */
+    .pulse-dot {
+      animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .4; transform: scale(1.15); }
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.561);
+      backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brand-500 selection:text-white min-h-screen flex flex-col justify-between">
+
+  <!-- EMERGENCY TOP BANNER -->
+  <div class="bg-rose-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium flex justify-center items-center gap-2 shadow-inner">
+    <i class="fa-solid font-bold fa-triangle-exclamation animate-bounce"></i>
+    <span>Emergency Medical Assistance Required? Call 24/7 Hotline: <a href="tel:911" class="underline font-bold hover:text-rose-100 transition">1-800-555-CARE (2273)</a> or Visit ER Block-A</span>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 glass-nav border-b border-slate-200/80 shadow-sm transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+            <i class="fa-solid fa-staff-snake text-2xl"></i>
+          </div>
+          <div>
+            <span class="text-xl font-extrabold text-brand-900 tracking-tight block leading-tight">CarePulse</span>
+            <span class="text-xs font-semibold text-brand-600 uppercase tracking-widest">Medical Center</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+          <a href="#services" class="hover:text-brand-600 transition-colors py-1">Services</a>
+          <a href="#doctors" class="hover:text-brand-600 transition-colors py-1">Doctors & Live Status</a>
+          <a href="#stats" class="hover:text-brand-600 transition-colors py-1">About Us</a>
+          <a href="#reviews" class="hover:text-brand-600 transition-colors py-1">Reviews</a>
+        </nav>
+
+        <!-- Action Buttons -->
+        <div class="hidden sm:flex items-center gap-4">
+          <a href="#book" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+            <i class="fa-regular fa-calendar-check"></i>
+            Book Appointment
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger Button -->
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-600 hover:text-brand-600 hover:bg-slate-100">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Dropdown Menu -->
+      <div id="mobileMenu" class="hidden md:hidden pb-6 border-t border-slate-100 pt-4 space-y-3">
+        <a href="#services" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-100">Services</a>
+        <a href="#doctors" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-100">Doctors & Live Status</a>
+        <a href="#stats" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-100">About Us</a>
+        <a href="#reviews" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-100">Reviews</a>
+        <a href="#book" class="block text-center bg-brand-600 text-white px-4 py-2.5 rounded-xl font-semibold shadow-sm">Book Appointment</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="relative bg-gradient-to-b from-brand-50 via-white to-slate-50 py-12 lg:py-20 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Left Hero Text -->
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-100 border border-brand-200 text-brand-800 text-xs sm:text-sm font-semibold">
+              <span class="w-2 h-2 rounded-full bg-brand-600 pulse-dot"></span>
+              24/7 Real-time Doctor Availability & Scheduling
+            </div>
+            
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              Compassionate Care, <br class="hidden sm:inline">
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-700 to-brand-500">Simplified Booking.</span>
+            </h1>
+
+            <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+              Check live specialist status, avoid waiting rooms, and instantly book outpatient appointments with top-rated medical experts at CarePulse.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+              <a href="#book" class="w-full sm:w-auto text-center px-7 py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
+                <i class="fa-solid fa-calendar-plus mr-2"></i> Book Appointment Now
+              </a>
+              <a href="#doctors" class="w-full sm:w-auto text-center px-7 py-3.5 bg-white border border-slate-300 hover:border-brand-500 text-slate-700 font-bold rounded-xl shadow-sm hover:bg-slate-50 transition-all">
+                <i class="fa-solid fa-user-doctor mr-2 text-brand-600"></i> Check Doctor Live Status
+              </a>
+            </div>
+
+            <!-- Quick Trust Badges -->
+            <div class="pt-6 border-t border-slate-200/60 grid grid-cols-3 gap-4 text-center lg:text-left max-w-md mx-auto lg:mx-0">
+              <div>
+                <p class="text-xl font-bold text-slate-900">50+</p>
+                <p class="text-xs text-slate-500 font-medium">Expert Specialists</p>
+              </div>
+              <div>
+                <p class="text-xl font-bold text-slate-900">15 min</p>
+                <p class="text-xs text-slate-500 font-medium">Avg. Wait Time</p>
+              </div>
+              <div>
+                <p class="text-xl font-bold text-slate-900">4.9/5</p>
+                <p class="text-xs text-slate-500 font-medium">Patient Satisfaction</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Hero Illustration / Quick Card -->
+          <div class="lg:col-span-5 relative">
+            <div class="relative bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-100">
+              <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-slate-900 text-sm">Live Hospital Status</h3>
+                    <p class="text-xs text-slate-500">Updated 1 min ago</p>
+                  </div>
+                </div>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 pulse-dot"></span> OP Open
+                </span>
+              </div>
+
+              <!-- Mini Doctor Preview list in card -->
+              <div class="space-y-4">
+                <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=100&auto=format&fit=crop&q=80" alt="Doctor" class="w-10 h-10 rounded-full object-cover border border-slate-200" onerror="this.src='https://placehold.co/100x100/0284c7/ffffff?text=Dr'">
+                    <div>
+                      <h4 class="text-xs font-bold text-slate-800">Dr. Sarah Jenkins</h4>
+                      <p class="text-[11px] text-slate-500">Cardiology</p>
+                    </div>
+                  </div>
+                  <span class="text-[11px] px-2.5 py-1 rounded-md font-semibold bg-emerald-100 text-emerald-800">Available</span>
+                </div>
+
+                <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=100&auto=format&fit=crop&q=80" alt="Doctor" class="w-10 h-10 rounded-full object-cover border border-slate-200" onerror="this.src='https://placehold.co/100x100/0284c7/ffffff?text=Dr'">
+                    <div>
+                      <h4 class="text-xs font-bold text-slate-800">Dr. Robert Chen</h4>
+                      <p class="text-[11px] text-slate-500">Neurology</p>
+                    </div>
+                  </div>
+                  <span class="text-[11px] px-2.5 py-1 rounded-md font-semibold bg-rose-100 text-rose-800">In Surgery</span>
+                </div>
+
+                <div class="p-3 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <img src="https://images.unsplash.com/photo-1594824813566-88855ce78907?w=100&auto=format&fit=crop&q=80" alt="Doctor" class="w-10 h-10 rounded-full object-cover border border-slate-200" onerror="this.src='https://placehold.co/100x100/0284c7/ffffff?text=Dr'">
+                    <div>
+                      <h4 class="text-xs font-bold text-slate-800">Dr. Alena Vance</h4>
+                      <p class="text-[11px] text-slate-500">Pediatrics</p>
+                    </div>
+                  </div>
+                  <span class="text-[11px] px-2.5 py-1 rounded-md font-semibold bg-amber-100 text-amber-800">Busy (ICU)</span>
+                </div>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-slate-100 text-center">
+                <a href="#doctors" class="text-xs font-bold text-brand-600 hover:text-brand-800 transition">View All 50+ Specialists Status &rarr;</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE DOCTOR AVAILABILITY TRACKER SECTION -->
+    <section id="doctors" class="py-16 bg-white border-t border-slate-200/70">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+          <div>
+            <span class="text-brand-600 font-bold text-xs uppercase tracking-wider block mb-1">Live Status Feed</span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Doctor Availability Tracker</h2>
+            <p class="text-slate-500 text-sm mt-1">Check real-time activity status before booking your consultation slot.</p>
+          </div>
+
+          <!-- Search & Department Filter -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <!-- Search Bar -->
+            <div class="relative">
+              <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+              <input type="text" id="doctorSearch" placeholder="Search doctor or specialty..." class="pl-9 pr-4 py-2.5 text-xs sm:text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 w-full sm:w-64 bg-slate-50">
+            </div>
+
+            <!-- Filter Dropdown -->
+            <select id="departmentFilter" class="px-4 py-2.5 text-xs sm:text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 bg-slate-50 font-medium text-slate-700">
+              <option value="all">All Departments</option>
+              <option value="Cardiology">Cardiology</option>
+              <option value="Neurology">Neurology</option>
+              <option value="Pediatrics">Pediatrics</option>
+              <option value="Orthopedics">Orthopedics</option>
+              <option value="Dermatology">Dermatology</option>
+              <option value="General Medicine">General Medicine</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- DOCTORS GRID -->
+        <div id="doctorsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Cards injected via JavaScript -->
+        </div>
+
+        <!-- Empty State Message -->
+        <div id="noResults" class="hidden text-center py-12 bg-slate-50 rounded-2xl border border-dashed border-slate-200 mt-6">
+          <i class="fa-solid fa-user-slash text-3xl text-slate-300 mb-2"></i>
+          <p class="text-slate-600 font-semibold text-sm">No doctors found matching your criteria.</p>
+          <button id="resetFilterBtn" class="mt-3 text-xs text-brand-600 font-bold hover:underline">Reset Filters</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BOOK APPOINTMENT SECTION -->
+    <section id="book" class="py-16 bg-slate-100/70 border-t border-slate-200/70">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-200/80 overflow-hidden">
+          <!-- Form Header -->
+          <div class="bg-gradient-to-r from-brand-800 to-brand-600 px-6 sm:px-10 py-8 text-white">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center">
+                <i class="fa-regular fa-calendar-check text-white"></i>
+              </div>
+              <h2 class="text-xl sm:text-2xl font-bold">Book Outpatient Appointment</h2>
+            </div>
+            <p class="text-brand-100 text-xs sm:text-sm">Fill out the patient details below to secure your preferred consultation slot.</p>
+          </div>
+
+          <!-- Form Body -->
+          <form id="appointmentForm" class="p-6 sm:p-10 space-y-6">
+            
+            <!-- Patient Info Section -->
+            <div>
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-user-check text-brand-500"></i> Patient Information
+              </h3>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1.5">Full Name *</label>
+                  <input type="text" id="patientName" required placeholder="e.g. Eleanor Vance" class="w-full px-4 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1.5">Phone Number *</label>
+                  <input type="tel" id="patientPhone" required placeholder="+1 (555) 000-0000" class="w-full px-4 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1.5">Email Address</label>
+                  <input type="email" id="patientEmail" placeholder="eleanor@example.com" class="w-full px-4 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1.5">Gender & Age</label>
+                  <div class="grid grid-cols-2 gap-2">
+                    <select id="patientGender" class="px-3 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                      <option>Female</option>
+                      <option>Male</option>
+                      <option>Other</option>
+                    </select>
+                    <input type="number" id="patientAge" min="1" max="120" placeholder="Age" class="px-3 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Doctor & Date Selection Section -->
+            <div class="pt-4 border-t border-slate-100">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-stethoscope text-brand-500"></i> Department & Doctor Selection
+              </h3>
+              
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1.5">Select Department *</label>
+                  <select id="formDepartment" required class="w-full px-4 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
+                    <option value="" disabled selected>Select a Department</option>
+                    <option value="Cardiology">Cardiology</option>
+                    <option value="Neurology">Neurology</option>
+                    <option value="Pediatrics">Pediatrics</option>
+                    <option value="Orthopedics">Orthopedics</option>
+                    <option value="Dermatology">Dermatology</option>
+                    <option value="General Medicine">General Medicine</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1.5">Select Doctor *</label>
+                  <select id="formDoctor" required class="w-full px-4 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
+                    <option value="" disabled selected>First Choose Department</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1.5">Preferred Date *</label>
+                  <input type="date" id="appointmentDate" required class="w-full px-4 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1.5">Time Slot *</label>
+                  <select id="appointmentTime" required class="w-full px-4 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none bg-white">
+                    <option value="" disabled selected>Select Available Slot</option>
+                    <option>09:00 AM - 09:30 AM</option>
+                    <option>10:00 AM - 10:30 AM</option>
+                    <option>11:30 AM - 12:00 PM</option>
+                    <option>02:00 PM - 02:30 PM</option>
+                    <option>03:30 PM - 04:00 PM</option>
+                    <option>05:00 PM - 05:30 PM</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Reason for Visit -->
+            <div class="pt-4 border-t border-slate-100">
+              <label class="block text-xs font-bold text-slate-700 mb-1.5">Symptoms / Reason for Visit</label>
+              <textarea id="patientNotes" rows="3" placeholder="Briefly describe your health concern or symptoms..." class="w-full px-4 py-2.5 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="pt-2">
+              <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all text-sm sm:text-base flex items-center justify-center gap-2">
+                <i class="fa-solid fa-paper-plane"></i> Confirm & Reserve Appointment
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HOSPITAL SERVICES -->
+    <section id="services" class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="text-brand-600 font-bold text-xs uppercase tracking-wider block mb-1">Our Specialties</span>
+          <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Comprehensive Medical Care</h2>
+          <p class="text-slate-500 text-sm mt-2">Equipped with state-of-the-art diagnostic labs and world-class specialists.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-brand-300 hover:shadow-md transition">
+            <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-base mb-2">Cardiology</h3>
+            <p class="text-slate-500 text-xs leading-relaxed">Advanced cardiac diagnostic imaging, ECG, treadmill testing, and preventative heart care.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-brand-300 hover:shadow-md transition">
+            <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-base mb-2">Neurology</h3>
+            <p class="text-slate-500 text-xs leading-relaxed">Comprehensive care for neurological disorders, stroke rehabilitation, and brain health.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-brand-300 hover:shadow-md transition">
+            <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-baby"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-base mb-2">Pediatrics</h3>
+            <p class="text-slate-500 text-xs leading-relaxed">Specialized neonatal, infant, and child health services with compassionate pediatricians.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-brand-300 hover:shadow-md transition">
+            <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-bone"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-base mb-2">Orthopedics</h3>
+            <p class="text-slate-500 text-xs leading-relaxed">Joint replacements, fracture care, sports medicine, and spinal injury treatment.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-brand-300 hover:shadow-md transition">
+            <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-allergies"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-base mb-2">Dermatology</h3>
+            <p class="text-slate-500 text-xs leading-relaxed">Advanced skincare, allergy treatment, laser therapies, and cosmetic consultations.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:border-brand-300 hover:shadow-md transition">
+            <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-notes-medical"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-base mb-2">General Medicine</h3>
+            <p class="text-slate-500 text-xs leading-relaxed">Routine check-ups, chronic disease management, vaccinations, and family healthcare.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS COUNTER BANNER -->
+    <section id="stats" class="py-14 bg-gradient-to-r from-brand-900 to-brand-700 text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+          <div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">25,000+</div>
+            <div class="text-xs sm:text-sm text-brand-100 font-medium">Patients Treated Yearly</div>
+          </div>
+          <div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">50+</div>
+            <div class="text-xs sm:text-sm text-brand-100 font-medium">Certified Specialists</div>
+          </div>
+          <div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">99.2%</div>
+            <div class="text-xs sm:text-sm text-brand-100 font-medium">Positive Feedback</div>
+          </div>
+          <div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1">24/7</div>
+            <div class="text-xs sm:text-sm text-brand-100 font-medium">Emergency Care</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PATIENT REVIEWS -->
+    <section id="reviews" class="py-16 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="text-brand-600 font-bold text-xs uppercase tracking-wider block mb-1">Patient Experience</span>
+          <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">What Our Patients Say</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/70 flex flex-col justify-between">
+            <div>
+              <div class="text-amber-400 mb-3 text-sm">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text-slate-600 text-xs sm:text-sm italic leading-relaxed">
+                "The live status tracker is a lifesaver! I checked that Dr. Jenkins was available right before driving over, booked my appointment online, and didn't wait more than 5 minutes."
+              </p>
+            </div>
+            <div class="mt-6 flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-brand-100 text-brand-700 font-bold flex items-center justify-center text-xs">
+                JD
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-slate-800">James Davies</h4>
+                <p class="text-[11px] text-slate-400">Cardiology Patient</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/70 flex flex-col justify-between">
+            <div>
+              <div class="text-amber-400 mb-3 text-sm">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text-slate-600 text-xs sm:text-sm italic leading-relaxed">
+                "Super clean hospital facilities and exceptionally polite nursing staff. Booking online was effortless on my smartphone."
+              </p>
+            </div>
+            <div class="mt-6 flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-brand-100 text-brand-700 font-bold flex items-center justify-center text-xs">
+                MR
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-slate-800">Maria Rodriguez</h4>
+                <p class="text-[11px] text-slate-400">Pediatrics Department</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200/70 flex flex-col justify-between">
+            <div>
+              <div class="text-amber-400 mb-3 text-sm">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text-slate-600 text-xs sm:text-sm italic leading-relaxed">
+                "Dr. Chen was extremely thorough during my consultation. The hospital front desk verified my booking code instantly upon arrival."
+              </p>
+            </div>
+            <div class="mt-6 flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-brand-100 text-brand-700 font-bold flex items-center justify-center text-xs">
+                AK
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-slate-800">Arthur King</h4>
+                <p class="text-[11px] text-slate-400">Neurology Patient</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CONFIRMATION MODAL -->
+  <div id="bookingModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-100 relative transform transition-all animate-fade-in">
+      
+      <button id="closeModalBtn" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto mb-3 shadow-inner">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h3 class="text-2xl font-bold text-slate-900">Booking Confirmed!</h3>
+        <p class="text-xs text-slate-500 mt-1">Your appointment request has been logged successfully.</p>
+      </div>
+
+      <div class="bg-slate-50 rounded-2xl p-4 sm:p-5 text-xs sm:text-sm space-y-3 border border-slate-200/80 mb-6">
+        <div class="flex justify-between pb-2 border-b border-slate-200">
+          <span class="text-slate-500">Booking ID</span>
+          <span id="modalBookingId" class="font-mono font-bold text-brand-700">#CP-0000</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-500">Patient Name</span>
+          <span id="modalPatientName" class="font-semibold text-slate-800">-</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-500">Doctor</span>
+          <span id="modalDoctor" class="font-semibold text-slate-800">-</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-500">Department</span>
+          <span id="modalDepartment" class="font-semibold text-slate-800">-</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-500">Date & Time</span>
+          <span id="modalDateTime" class="font-semibold text-slate-800">-</span>
+        </div>
+      </div>
+
+      <div class="text-center space-y-3">
+        <p class="text-xs text-slate-500">A confirmation SMS & Email summary has been sent to your registered contact.</p>
+        <button id="doneModalBtn" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl shadow transition">
+          Done
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-2 text-white font-bold text-lg mb-4">
+            <i class="fa-solid fa-staff-snake text-brand-500"></i> CarePulse Hospital
+          </div>
+          <p class="text-xs leading-relaxed text-slate-400">
+            Providing accessible, world-class healthcare with live doctor tracking and seamless online appointments.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-white text-xs font-bold uppercase tracking-wider mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#services" class="hover:text-white transition">Services</a></li>
+            <li><a href="#doctors" class="hover:text-white transition">Live Doctor Status</a></li>
+            <li><a href="#book" class="hover:text-white transition">Book Appointment</a></li>
+            <li><a href="#stats" class="hover:text-white transition">About Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white text-xs font-bold uppercase tracking-wider mb-4">Departments</h4>
+          <ul class="space-y-2 text-xs">
+            <li>Cardiology & Heart Care</li>
+            <li>Neurology & Spine</li>
+            <li>Pediatrics & Child Care</li>
+            <li>Orthopedics & Joint Care</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white text-xs font-bold uppercase tracking-wider mb-4">Contact & Location</h4>
+          <p class="text-xs text-slate-400 mb-2"><i class="fa-solid fa-location-dot mr-2 text-brand-500"></i> 100 Medical Center Way, Suite 400</p>
+          <p class="text-xs text-slate-400 mb-2"><i class="fa-solid fa-phone mr-2 text-brand-500"></i> +1 (800) 555-CARE</p>
+          <p class="text-xs text-slate-400"><i class="fa-solid fa-envelope mr-2 text-brand-500"></i> info@carepulsemed.org</p>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
+        &copy; 2026 CarePulse Medical Center. All rights reserved. Professional Healthcare Portal.
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // --- MOCK DOCTORS DATA WITH LIVE STATUS ---
+    const doctorsData = [
+      {
+        id: "doc1",
+        name: "Dr. Sarah Jenkins",
+        specialty: "Cardiology",
+        experience: "14 yrs exp",
+        status: "Available", // Available, In Surgery, Busy (ICU), On Break
+        statusMessage: "Available Today",
+        nextSlot: "Next slot: 10:30 AM",
+        img: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=200&auto=format&fit=crop&q=80",
+        room: "OP Block A, Room 102"
+      },
+      {
+        id: "doc2",
+        name: "Dr. Robert Chen",
+        specialty: "Neurology",
+        experience: "18 yrs exp",
+        status: "In Surgery",
+        statusMessage: "In Surgery (OR 3)",
+        nextSlot: "Next slot: 02:30 PM",
+        img: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=200&auto=format&fit=crop&q=80",
+        room: "OP Block B, Room 204"
+      },
+      {
+        id: "doc3",
+        name: "Dr. Alena Vance",
+        specialty: "Pediatrics",
+        experience: "10 yrs exp",
+        status: "Busy (ICU)",
+        statusMessage: "Busy in NICU",
+        nextSlot: "Next slot: 11:30 AM",
+        img: "https://images.unsplash.com/photo-1594824813566-88855ce78907?w=200&auto=format&fit=crop&q=80",
+        room: "Pediatric Wing, Room 05"
+      },
+      {
+        id: "doc4",
+        name: "Dr. Marcus Thorne",
+        specialty: "Orthopedics",
+        experience: "12 yrs exp",
+        status: "Available",
+        statusMessage: "Available Today",
+        nextSlot: "Next slot: 09:00 AM",
+        img: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=200&auto=format&fit=crop&q=80",
+        room: "OP Block C, Room 118"
+      },
+      {
+        id: "doc5",
+        name: "Dr. Maya Lin",
+        specialty: "Dermatology",
+        experience: "8 yrs exp",
+        status: "On Break",
+        statusMessage: "On Lunch Break",
+        nextSlot: "Next slot: 01:30 PM",
+        img: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200&auto=format&fit=crop&q=80",
+        room: "Clinic Annex, Room 301"
+      },
+      {
+        id: "doc6",
+        name: "Dr. David Sterling",
+        specialty: "General Medicine",
+        experience: "15 yrs exp",
+        status: "Available",
+        statusMessage: "Available Today",
+        nextSlot: "Next slot: 11:00 AM",
+        img: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=200&auto=format&fit=crop&q=80",
+        room: "OP Main Block, Room 10"
+      }
+    ];
+
+    // Helper to get status badge HTML
+    function getStatusBadge(status, message) {
+      switch(status) {
+        case 'Available':
+          return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 pulse-dot"></span> Available
+                  </span>`;
+        case 'In Surgery':
+          return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800 border border-rose-200">
+                    <span class="w-2 h-2 rounded-full bg-rose-500"></span> In Surgery
+                  </span>`;
+        case 'Busy (ICU)':
+          return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-200">
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span> Busy in ICU
+                  </span>`;
+        case 'On Break':
+          return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-slate-200 text-slate-700 border border-slate-300">
+                    <span class="w-2 h-2 rounded-full bg-slate-500"></span> On Break
+                  </span>`;
+        default:
+          return `<span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600">${status}</span>`;
+      }
+    }
+
+    // Render Doctor Cards
+    function renderDoctors(doctors) {
+      const grid = document.getElementById('doctorsGrid');
+      const noResults = document.getElementById('noResults');
+      
+      grid.innerHTML = '';
+
+      if (doctors.length === 0) {
+        noResults.classList.remove('hidden');
+        return;
+      } else {
+        noResults.classList.add('hidden');
+      }
+
+      doctors.forEach(doc => {
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md transition flex flex-col justify-between";
+        card.innerHTML = `
+          <div>
+            <div class="flex items-start justify-between gap-3 mb-4">
+              <div class="flex items-center gap-3">
+                <img src="${doc.img}" alt="${doc.name}" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shadow-sm" onerror="this.src='https://placehold.co/100x100/0284c7/ffffff?text=Doctor'">
+                <div>
+                  <h3 class="font-bold text-slate-900 text-base">${doc.name}</h3>
+                  <p class="text-xs font-medium text-brand-600">${doc.specialty}</p>
+                  <p class="text-[11px] text-slate-400">${doc.experience}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between my-3 py-2 px-3 bg-slate-50 rounded-xl text-xs border border-slate-100">
+              <span class="text-slate-500 font-medium">Status</span>
+              ${getStatusBadge(doc.status, doc.statusMessage)}
+            </div>
+
+            <div class="text-xs text-slate-500 space-y-1 mb-4">
+              <p><i class="fa-solid fa-door-open text-brand-500 mr-1.5"></i> ${doc.room}</p>
+              <p class="font-medium text-slate-700"><i class="fa-regular fa-clock text-brand-500 mr-1.5"></i> ${doc.nextSlot}</p>
+            </div>
+          </div>
+
+          <button onclick="selectDoctorForBooking('${doc.specialty}', '${doc.name}')" class="w-full text-center py-2.5 px-4 bg-brand-50 hover:bg-brand-600 text-brand-700 hover:text-white font-bold text-xs rounded-xl border border-brand-200 hover:border-brand-600 transition">
+            Book Appointment
+          </button>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Filter & Search Handler
+    function filterDoctors() {
+      const searchTerm = document.getElementById('doctorSearch').value.toLowerCase();
+      const selectedDept = document.getElementById('departmentFilter').value;
+
+      const filtered = doctorsData.filter(doc => {
+        const matchesSearch = doc.name.toLowerCase().includes(searchTerm) || doc.specialty.toLowerCase().includes(searchTerm);
+        const matchesDept = selectedDept === 'all' || doc.specialty === selectedDept;
+        return matchesSearch && matchesDept;
+      });
+
+      renderDoctors(filtered);
+    }
+
+    // Dynamic Form Doctor Population
+    function populateFormDoctors(selectedDept) {
+      const doctorSelect = document.getElementById('formDoctor');
+      doctorSelect.innerHTML = '<option value="" disabled selected>Select Available Doctor</option>';
+
+      const filteredDocs = doctorsData.filter(d => d.specialty === selectedDept);
+      
+      if (filteredDocs.length === 0) {
+        doctorSelect.innerHTML = '<option value="" disabled selected>No doctors found for department</option>';
+        return;
+      }
+
+      filteredDocs.forEach(d => {
+        const opt = document.createElement('option');
+        opt.value = d.name;
+        opt.textContent = `${d.name} (${d.status})`;
+        doctorSelect.appendChild(opt);
+      });
+    }
+
+    // External Trigger to Book Specific Doctor
+    function selectDoctorForBooking(department, doctorName) {
+      const deptSelect = document.getElementById('formDepartment');
+      deptSelect.value = department;
+      populateFormDoctors(department);
+
+      const docSelect = document.getElementById('formDoctor');
+      docSelect.value = doctorName;
+
+      // Scroll smoothly to appointment section
+      document.getElementById('book').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // --- EVENT LISTENERS & INITIALIZATION ---
+    window.addEventListener('DOMContentLoaded', () => {
+      // Set minimum date to today
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('appointmentDate').min = today;
+      document.getElementById('appointmentDate').value = today;
+
+      // Render initial doctor grid
+      renderDoctors(doctorsData);
+
+      // Search & Filter Listeners
+      document.getElementById('doctorSearch').addEventListener('input', filterDoctors);
+      document.getElementById('departmentFilter').addEventListener('change', filterDoctors);
+      document.getElementById('resetFilterBtn').addEventListener('click', () => {
+        document.getElementById('doctorSearch').value = '';
+        document.getElementById('departmentFilter').value = 'all';
+        renderDoctors(doctorsData);
+      });
+
+      // Mobile Menu Toggle
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Form Department change listener
+      document.getElementById('formDepartment').addEventListener('change', (e) => {
+        populateFormDoctors(e.target.value);
+      });
+
+      // Handle Appointment Form Submission
+      const form = document.getElementById('appointmentForm');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Collect Form Values
+        const patientName = document.getElementById('patientName').value;
+        const doctor = document.getElementById('formDoctor').value;
+        const department = document.getElementById('formDepartment').value;
+        const date = document.getElementById('appointmentDate').value;
+        const time = document.getElementById('appointmentTime').value;
+
+        // Generate Random Booking ID
+        const bookingId = '#CP-' + Math.floor(1000 + Math.random() * 9000);
+
+        // Populate Modal Fields
+        document.getElementById('modalBookingId').textContent = bookingId;
+        document.getElementById('modalPatientName').textContent = patientName;
+        document.getElementById('modalDoctor').textContent = doctor;
+        document.getElementById('modalDepartment').textContent = department;
+        document.getElementById('modalDateTime').textContent = `${date} at ${time}`;
+
+        // Show Modal
+        document.getElementById('bookingModal').classList.remove('hidden');
+      });
+
+      // Close Modal Logic
+      const modal = document.getElementById('bookingModal');
+      const closeModal = () => {
+        modal.classList.add('hidden');
+        form.reset();
+        document.getElementById('appointmentDate').value = today;
+      };
+
+      document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+      document.getElementById('doneModalBtn').addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+    });
+  </script>
+</body>
+</html>
